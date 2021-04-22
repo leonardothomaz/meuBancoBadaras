@@ -43,7 +43,17 @@ export default function Form() {
     if (inputNameNotSet || inputAgeNotSet) {
       return false;
     }
-    Alert.alert("Parabéns", `Olá ${name} seu cadastro foi concluido com sucesso!`);
+    let stringSexo =
+      selectedValue != "no" ? `Você declarou ser ${selectedValue}` : "";
+    Alert.alert(
+      "Parabéns",
+      `Olá ${name} seu cadastro foi concluído com sucesso, 
+      ${stringSexo} com ${age} Anos o limite selecionado por ti foi ${selectedValueSlider
+        .toFixed(2)
+        .replace(".", ",")}
+        você diz ${isEnabled ? "ser" : "não ser"} estudante
+        !`
+    );
   }
 
   return (
@@ -79,8 +89,8 @@ export default function Form() {
           selectedValue={selectedValue}
           onValueChange={(itemValue) => setSelectedValue(itemValue)}
         >
-          <Picker.Item label="Homem" value="man" />
-          <Picker.Item label="Mulher" value="woman" />
+          <Picker.Item label="Homem" value="homem" />
+          <Picker.Item label="Mulher" value="mulher" />
           <Picker.Item label="Prefiro Não informar" value="no" />
         </Picker>
       </View>
